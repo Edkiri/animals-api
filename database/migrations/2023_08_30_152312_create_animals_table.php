@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('species');
-            $table->unsignedSmallInteger('age');
             $table->string('gender')->checkIn(['male', 'female']);
-            $table->unsignedSmallInteger('weight');
+            $table->unsignedSmallInteger('age')->nullable();
+            $table->unsignedSmallInteger('weight')->nullable();
         });
     }
 
