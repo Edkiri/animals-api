@@ -8,11 +8,11 @@ services:
         container_name: animals-db
         environment:
             MYSQL_ROOT_PASSWORD: "root"
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: $DB_DATABASE
+            MYSQL_PASSWORD: $DB_PASSWORD
         volumes:
             - ./data/mysql:/var/lib/mysql
         ports:
-            - "3306:3306"
+            - "$DB_PORT:3306"
 volumes:
     db:
