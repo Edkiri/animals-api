@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Models\Animal;
 
@@ -79,6 +80,31 @@ class AnimalController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => $th->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $animal = Animal::findOrFail($id);
+            $animal->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Animal deleted successfully',
+            ], Response::HTTP_OK);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Animal not found',
+            ], Response::HTTP_NOT_FOUND);
+        } catch (\Throwable $th) {
+            Log::error('Error deleting animal: ' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error deleting animal',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

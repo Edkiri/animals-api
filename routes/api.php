@@ -18,3 +18,4 @@ use App\Http\Controllers\AnimalController;
 // Animals
 Route::post('animals', [AnimalController::class, 'create']);
 Route::get('animals', [AnimalController::class, 'findAll']);
+Route::delete('animals/{id}', [AnimalController::class, 'delete']);
