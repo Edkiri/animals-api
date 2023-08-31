@@ -93,7 +93,7 @@ class AnimalController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Animal deleted successfully',
-            ], Response::HTTP_OK);
+            ], Response::HTTP_NO_CONTENT);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'success' => false,
