@@ -66,7 +66,7 @@ class AnimalController extends Controller
     public function findAll()
     {
         try {
-            $animals = Animal::get();
+            $animals = Animal::orderByDesc('id')->get();
 
             return response()->json([
                 'success' => true,
