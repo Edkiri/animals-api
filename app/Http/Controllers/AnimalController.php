@@ -18,8 +18,8 @@ class AnimalController extends Controller
         try {
 
             $validator = Validator::make($req->all(), [
-                'name' => ['required', 'string', 'min:2', 'unique:animals,name'],
-                'species' => ['required', 'string', 'min:2'],
+                'name' => ['required', 'string', 'min:4'],
+                'species' => ['required', 'string', 'min:4'],
                 'gender' => ['required', 'in:male,female'],
                 'age' => ['nullable', 'numeric', 'gt:0'],
                 'weight' => ['nullable', 'numeric', 'gt:0'],

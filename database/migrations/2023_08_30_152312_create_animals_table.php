@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('species');
             $table->string('gender')->checkIn(['male', 'female']);
             $table->unsignedSmallInteger('age')->nullable();
